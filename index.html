@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gestión de Asistencia</title>
+  <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+
+  <!-- ===== ENCABEZADO DE LA PÁGINA ===== -->
+  <header>
+    <h1>Sistema de Gestión de Asistencia</h1>
+    <nav>
+      <ul>
+        <!-- Enlaces de navegación hacia secciones internas -->
+        <li><a href="#auth">Acceso</a></li>
+        <li><a href="#usuarios">Usuarios</a></li>
+        <li><a href="#asistencia">Asistencia</a></li>
+        <li><a href="#reportes">Reportes</a></li>
+        <li><a href="#notificaciones">Notificaciones</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main>
+
+    <!-- === SECCIÓN DE AUTENTICACIÓN: INICIO Y REGISTRO === -->
+    <section id="auth">
+      <h2>Acceso al Sistema</h2>
+      <div class="form-container">
+        
+        <!-- Formulario de Inicio de Sesión -->
+        <form class="form login-form">
+          <h3>Iniciar Sesión</h3>
+          <label for="login-email">Correo electrónico:</label>
+          <input type="email" id="login-email" name="email" required>
+
+          <label for="login-password">Contraseña:</label>
+          <input type="password" id="login-password" name="password" required>
+
+          <button type="submit">Ingresar</button>
+        </form>
+
+        <!-- Formulario de Registro de Usuario -->
+        <form class="form register-form">
+          <h3>Registrarse</h3>
+          <label for="reg-name">Nombre completo:</label>
+          <input type="text" id="reg-name" name="name" required>
+
+          <label for="reg-email">Correo electrónico:</label>
+          <input type="email" id="reg-email" name="email" required>
+
+          <label for="reg-role">Rol:</label>
+          <select id="reg-role" name="role" required>
+            <option value="">Seleccione</option>
+            <option value="docente">Docente</option>
+            <option value="estudiante">Estudiante</option>
+          </select>
+
+          <label for="reg-password">Contraseña:</label>
+          <input type="password" id="reg-password" name="password" required>
+
+          <button type="submit">Registrarse</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- === GESTIÓN DE USUARIOS === -->
+    <section id="usuarios">
+      <h2>Gestión de Usuarios</h2>
+
+      <article>
+        <h3>Registro y autenticación de docentes</h3>
+        <p>El sistema permite a los docentes registrarse e iniciar sesión de forma segura.</p>
+      </article>
+
+      <article>
+        <h3>Gestión de usuarios por el administrador</h3>
+        <p>El administrador puede crear, editar y eliminar usuarios del sistema.</p>
+      </article>
+    </section>
+
+    <!-- === GESTIÓN DE ASISTENCIA === -->
+    <section id="asistencia">
+      <h2>Gestión de Asistencia</h2>
+
+      <article>
+        <h3>Registro de asistencia</h3>
+        <p>Los docentes pueden registrar la asistencia de los estudiantes en tiempo real.</p>
+      </article>
+
+      <article>
+        <h3>Edición de asistencia</h3>
+        <p>Los docentes pueden corregir registros de asistencia previamente guardados.</p>
+      </article>
+    </section>
+
+    <!-- === REPORTES Y CONSULTAS === -->
+    <section id="reportes">
+      <h2>Reportes y Consultas</h2>
+
+      <article>
+        <h3>Historial de asistencia</h3>
+        <p>Los docentes y estudiantes pueden consultar el historial de asistencia.</p>
+      </article>
+
+      <article>
+        <h3>Exportar reportes</h3>
+        <p>Los reportes pueden ser exportados en formato PDF o Excel.</p>
+      </article>
+
+      <article>
+        <h3>Estadísticas visuales</h3>
+        <p>El sistema muestra gráficos y estadísticas sobre la asistencia.</p>
+      </article>
+    </section>
+
+    <!-- === NOTIFICACIONES (OPCIONAL) === -->
+    <section id="notificaciones">
+      <h2>Notificaciones (Opcional)</h2>
+
+      <article>
+        <h3>Alertas de inasistencia</h3>
+        <p>Los estudiantes o padres de familia reciben alertas por inasistencias.</p>
+      </article>
+
+      <article>
+        <h3>Configuración de alertas</h3>
+        <p>Se pueden configurar alertas personalizadas por asistencia baja.</p>
+      </article>
+    </section>
+
+  </main>
+
+  <!-- ===== PIE DE PÁGINA ===== -->
+  <footer>
+    <p>&copy; 2025 Sistema de Gestión de Asistencia. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>
