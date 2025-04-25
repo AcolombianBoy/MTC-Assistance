@@ -4,24 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistema de Gestión de Asistencia</title>
-  <link rel="stylesheet" href="styles.css"> 
+  <link rel="stylesheet" href="/MTC-Assistance/styles/main-styles.css">
+  <link rel="stylesheet" href="/MTC-Assistance/styles/login-styles.css"> 
 </head>
 <body>
   <!-- ===== CONTENIDO PRINCIPAL ===== -->
   <main>
     <!-- === SECCIÓN DE AUTENTICACIÓN: INICIO Y REGISTRO === -->
     <section id="auth">
-      <h2>Acceso al Sistema</h2>
       <div class="form-container">
         <!-- Formulario de Inicio de Sesión -->
-        <form id="login-form" method="post">
-          <h3>Iniciar Sesión</h3>
-          <label for="login-email">Correo electrónico:</label>
-          <input type="email" id="login-email" name="email" required>
-          <label for="login-password">Contraseña:</label>
-          <input type="password" id="login-password" name="password" required>
-          <button type="submit">Ingresar</button>
-        </form>
+        <div class="login-form-container">
+          <form id="login-form" method="post">
+            <h3>Iniciar Sesión</h3>
+            <label for="login-email">Correo electrónico:</label>
+            <input type="email" id="login-email" name="email" required>
+            <label for="login-password">Contraseña:</label>
+            <input type="password" id="login-password" name="password" required>
+            <button type="submit">Ingresar</button>
+          </form>
+          <p>¿No tienes una cuenta? <button onclick="">Regístrate aquí</button></p>
+        </div>
         <!-- Formulario de Registro de Usuario -->
         <form id="register-form" method="post">
           <h3>Registrarse</h3>
