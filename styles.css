@@ -41,64 +41,30 @@ section h2 {
 }
 
 .form-container {
+  position: relative;
+  height: 450px; /* Altura aproximada para contener los formularios */
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 280px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  background-color: white;
+  transition: transform 0.3s ease-in-out;
 }
 
-.form {
-    flex: 1;
-    min-width: 280px;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-}
-
-.form h3 {
-    margin-bottom: 15px;
-    color: #2c3e50;
-}
-
-.form label {
-    margin-top: 10px;
-    font-weight: 600;
-    font-size: 0.95rem;
-}
-
-.form input,
-.form select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    margin-top: 5px;
-    font-size: 1rem;
-}
-
-.form button {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #1abc9c;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.form button:hover {
-    background-color: #16a085;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    margin-top: 30px;
-    color: #777;
-    font-size: 0.9rem;
-}
 #login-form {
-  
+  z-index: 2;
 }
 
-
+#register-form {
+  z-index: 1;
+}
