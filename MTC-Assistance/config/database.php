@@ -1,14 +1,14 @@
 <?php
-$host = "localhost";
-$dbname = "mtc_assistance";  // Puedes cambiarlo por el nombre que prefieras
-$username = "root";
-$password = "";
+$host = 'localhost';
+$dbname = 'mtc_assistance';
+$username = 'root';
+$password = '';
 
 try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    // Establece el modo de error de PDO a excepción
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Error de conexión: " . $e->getMessage());
+    $conn->exec("SET NAMES utf8");
+} catch(PDOException $e) {
+    echo json_encode(['error' => true, 'message' => 'Connection failed: ' . $e->getMessage()]);
+    exit;
 }
-?>

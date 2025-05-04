@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTC Assistance - Áreas</title>
+    <link rel="stylesheet" href="../styles/areas.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="user-info">
+            <img src="../assets/perfil.jpg" alt="Perfil" id="userAvatar">
+            <span id="userName"></span>
+        </div>
+        <button id="addAreaBtn" class="btn-primary">Nueva Área</button>
+        <button id="logoutBtn" class="btn-secondary">Cerrar Sesión</button>
+    </nav>
+
+    <main class="container">
+        <h1>Gestión de Áreas</h1>
+        <button id="addAreaBtn">Agregar Área</button>
+        <div class="areas-grid" id="areasContainer"></div>
+    </main>
+
+    <!-- Modal para Área -->
+    <div id="areaModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Nueva Área</h2>
+            <form id="areaForm">
+                <div class="form-group">
+                    <label for="areaNombre">Nombre del Área</label>
+                    <input type="text" id="areaNombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="areaDescripcion">Descripción</label>
+                    <textarea id="areaDescripcion" rows="3"></textarea>
+                </div>
+                <input type="hidden" id="areaId">
+                <button type="submit" class="btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+    <script src="../scripts/areas.js"></script>
+</body>
+</html>
