@@ -9,13 +9,14 @@
     <nav>
         <ul>
             <li><img src="/assets/perfil.jpg" alt=""></li>
-            <li><button>Agregar area</button></li>
+            <li><button onclick="AddCurseDiv()">Agregar area</button></li>
             <li><button>Eliminar area</button></li>
             <li><button>Modificar area</button></li>
         </ul>
     </nav>
-    <main>
+    <main id="main">
         <!--El contenido se genera dinamicamente-->
     </main>
+    <script src="/scripts/create-curse-div.js"></script>
 </body>
 </html>
