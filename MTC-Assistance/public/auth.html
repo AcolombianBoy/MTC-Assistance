@@ -1,55 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Configuración básica del documento -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título de la página -->
     <title>MTC Assistance - Autenticación</title>
+    <!-- Enlace a los estilos CSS -->
     <link rel="stylesheet" href="../styles/auth.css">
 </head>
 <body>
+    <!-- Contenedor principal -->
     <div class="container">
-        <!-- Login Form -->
+        <!-- Formulario de Login -->
         <div class="form-container" id="loginForm">
             <h2>Iniciar Sesión</h2>
             <form id="login">
+                <!-- Campo de correo electrónico -->
                 <div class="form-group">
                     <label for="loginEmail">Correo Electrónico</label>
                     <input type="email" id="loginEmail" required>
                 </div>
+                <!-- Campo de contraseña -->
                 <div class="form-group">
                     <label for="loginPassword">Contraseña</label>
                     <input type="password" id="loginPassword" required>
                 </div>
+                <!-- Botón de envío -->
                 <button type="submit">Iniciar Sesión</button>
             </form>
+            <!-- Enlace para cambiar al formulario de registro -->
             <p>¿No tienes cuenta? <a href="#" onclick="toggleForms()">Regístrate aquí</a></p>
         </div>
 
-        <!-- Register Form -->
+        <!-- Formulario de Registro -->
         <div class="form-container" id="registerForm" style="display: none;">
             <h2>Registro</h2>
             <form id="register">
+                <!-- Campo de nombre -->
                 <div class="form-group">
                     <label for="registerName">Nombre Completo</label>
                     <input type="text" id="registerName" required>
                 </div>
+                <!-- Campo de correo -->
                 <div class="form-group">
                     <label for="registerEmail">Correo Electrónico</label>
                     <input type="email" id="registerEmail" required>
                 </div>
+                <!-- Campo de contraseña -->
                 <div class="form-group">
                     <label for="registerPassword">Contraseña</label>
                     <input type="password" id="registerPassword" required>
                 </div>
+                <!-- Campo de confirmación de contraseña -->
                 <div class="form-group">
                     <label for="confirmPassword">Confirmar Contraseña</label>
                     <input type="password" id="confirmPassword" required>
                 </div>
+                <!-- Botón de registro -->
                 <button type="submit">Registrarse</button>
             </form>
+            <!-- Enlace para volver al login -->
             <p>¿Ya tienes cuenta? <a href="#" onclick="toggleForms()">Inicia sesión aquí</a></p>
         </div>
     </div>
+    <!-- Script de funcionalidad -->
     <script src="../scripts/auth.js"></script>
 </body>
 </html>

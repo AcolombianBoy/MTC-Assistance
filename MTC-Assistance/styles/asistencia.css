@@ -1,0 +1,292 @@
+:root {
+  --primary-color: #4a6cf7;
+  --secondary-color: #6c7ae0;
+  --background-color: #f5f5f5;
+  --text-color: #333;
+  --success-color: #00c851;
+  --danger-color: #ff4444;
+}
+
+/* Heredamos estilos base */
+@import url("areas.css");
+
+.area-info {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.asistencia-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.date-input {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.asistentes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.asistente-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.asistencia-lista {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.asistencia-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.asistencia-item:last-child {
+  border-bottom: none;
+}
+
+.estado-asistencia {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Estilos para los botones de estado presente o ausente */
+.estado-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.estado-btn.presente {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.estado-btn.presente.active {
+  background-color: var(--success-color);
+  color: white;
+  opacity: 1;
+}
+
+.estado-btn.ausente {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.estado-btn.ausente.active {
+  background-color: var(--danger-color);
+  color: white;
+  opacity: 1;
+}
+
+/* Efecto hover */
+.estado-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* Efecto cuando está activo */
+.estado-btn.active {
+  transform: scale(1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.edit-form {
+  width: 100%;
+}
+
+.edit-form .form-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.edit-form input {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  flex: 1;
+}
+
+.edit-form button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.asistencia-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.asistencia-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background: var(--background-color);
+  border-radius: 4px;
+}
+
+.estado-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.historial-container {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.historial-section {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.historial-header {
+  margin-bottom: 1rem;
+}
+
+.historial-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.historial-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--background-color);
+  border-radius: 4px;
+}
+
+.historial-fecha {
+  font-weight: bold;
+}
+
+.historial-stats {
+  display: flex;
+  gap: 2rem;
+}
+
+.presentes {
+  color: var(--success-color);
+}
+
+.ausentes {
+  color: var(--danger-color);
+}
+/* Estilos para la sección de asistentes */
+.asistentes-section {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezado de la sección de asistentes */
+.asistentes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Formulario deslizable */
+.form-slide {
+  background: var(--background-color);
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Fila de formulario */
+.form-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Campos de entrada del formulario */
+.form-row input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Lista de asistentes */
+.asistentes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Elemento individual de asistente */
+.asistente-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--background-color);
+  border-radius: 4px;
+}
+
+/* Información del asistente */
+.asistente-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Botón de éxito */
+.btn-success {
+  background-color: var(--success-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Botón de peligro/eliminar */
+.btn-danger {
+  background-color: var(--danger-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}

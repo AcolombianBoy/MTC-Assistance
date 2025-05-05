@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Configuración básica del documento -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTC Assistance - Control de Asistencia</title>
+    <!-- Vinculación con hoja de estilos externa -->
+    <link rel="stylesheet" href="../styles/asistencia.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <!-- Información del usuario -->
+        <div class="user-info">
+            <img src="../assets/perfil.jpg" alt="Perfil" id="userAvatar">
+            <span id="userName"></span>
+        </div>
+        <!-- Botones de acción -->
+        <div class="nav-actions">
+            <button id="backBtn" class="btn-secondary">Volver</button>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Información del área -->
+        <div class="area-info">
+            <h1 id="areaNombre">Cargando...</h1>
+            <p id="areaDescripcion"></p>
+        </div>
+
+        <!-- Sección de gestión de asistentes -->
+        <div class="asistentes-section">
+            <!-- Encabezado con botón de agregar -->
+            <div class="asistentes-header">
+                <h2>Lista de Asistentes</h2>
+                <button id="toggleFormBtn" class="btn-primary">Agregar Asistente</button>
+            </div>
+
+            <!-- Formulario desplegable para nuevo asistente -->
+            <div id="asistentesForm" class="form-slide" style="display: none;">
+                <form id="newAsistenteForm">
+                    <div class="form-row">
+                        <input type="text" id="nombreAsistente" placeholder="Nombre completo" required>
+                        <input type="email" id="emailAsistente" placeholder="Correo electrónico" required>
+                        <button type="submit" class="btn-success">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Contenedor de lista de asistentes -->
+            <div class="asistentes-list" id="asistentesList">
+                <!-- La lista se llenará dinámicamente mediante JavaScript -->
+            </div>
+        </div>
+
+        <!-- Controles de asistencia -->
+        <div class="asistencia-controls">
+            <input type="date" id="fechaAsistencia" class="date-input">
+            <button id="tomarAsistenciaBtn" class="btn-primary">Tomar Asistencia</button>
+        </div>
+
+        <!-- Sección de historial -->
+        <div class="historial-section">
+            <div class="historial-header">
+                <h2>Historial de Asistencias</h2>
+            </div>
+            <div id="historialContainer" class="historial-grid">
+                <!-- El historial se llenará dinámicamente mediante JavaScript -->
+            </div>
+        </div>
+
+        <!-- Modal para tomar asistencia -->
+        <div id="asistenciaModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Registro de Asistencia</h2>
+                <div id="listaAsistencia" class="asistencia-lista"></div>
+                <button id="guardarAsistenciaBtn" class="btn-primary">Guardar</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Vinculación con archivo JavaScript -->
+    <script src="../scripts/asistencia.js"></script>
+</body>
+</html>

@@ -134,7 +134,7 @@ async function deleteArea(id) {
     if (!confirm('¿Estás seguro de eliminar esta área?')) return;
     
     try {
-        const response = await fetch('../controllers/areas/delete.php', {
+        const response = await fetch('/mtca/MTC-Assistance/MTC-Assistance/controllers/areas/delete.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id })
