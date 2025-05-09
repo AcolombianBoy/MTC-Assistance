@@ -1,11 +1,14 @@
 /* Variables globales de colores y estilos */
 :root {
-    --primary-color: #4a6cf7;    /* Color principal */
-    --secondary-color: #6c7ae0;   /* Color secundario */
-    --background-color: #f5f5f5;  /* Color de fondo */
-    --text-color: #333;          /* Color de texto */
-    --error-color: #ff4444;      /* Color para errores */
-    --success-color: #00C851;    /* Color para éxito */
+    --primary-color: rgba(74, 108, 247, 0.8);
+    --secondary-color: rgba(108, 122, 224, 0.9);
+    --background-color: #f0f4ff;
+    --text-color: #333;
+    --error-color: #ff4444;
+    --success-color: #00C851;
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
 /* Reset de estilos básicos */
@@ -17,25 +20,62 @@
 
 /* Estilos del cuerpo de la página */
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: var(--background-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    color: var(--text-color);
+}
+
+/* Elementos de fondo para el efecto visual */
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    top: -250px;
+    left: -250px;
+    z-index: -1;
+    filter: blur(20px);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    border-radius: 50%;
+    bottom: -200px;
+    right: -200px;
+    z-index: -1;
+    filter: blur(20px);
 }
 
 /* Barra de navegación */
 .navbar {
-    background-color: white;
-    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem 2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 4px 20px rgba(31, 38, 135, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 /* Información del usuario */
 .user-info {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 15px;
 }
 
 /* Avatar del usuario */
@@ -43,11 +83,81 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+#userName {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+/* Botones */
+.btn-primary, .btn-secondary {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(74, 108, 247, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Contenedor principal */
 .container {
-    padding: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* Títulos */
+h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--text-color);
+    position: relative;
+    padding-bottom: 0.8rem;
+}
+
+h1:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 10px;
 }
 
 /* Grid de áreas */
@@ -55,27 +165,69 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
+    margin-top: 2rem;
 }
 
 /* Tarjeta de área */
 .area-card {
-    background: white;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
     padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    transform: perspective(1000px) translateZ(0);
+}
+
+.area-card:hover {
+    transform: perspective(1000px) translateZ(10px);
+    box-shadow: var(--glass-shadow), 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 /* Título de la tarjeta */
 .area-card h3 {
-    color: var(--primary-color);
     margin-bottom: 1rem;
+    color: var(--text-color);
+    font-size: 1.3rem;
+}
+
+.area-card p {
+    color: var(--text-color);
+    margin-bottom: 1.2rem;
+    flex-grow: 1;
+    opacity: 0.9;
 }
 
 /* Acciones de la tarjeta */
 .area-actions {
     display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.action-btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.edit-btn {
+    background: linear-gradient(90deg, rgba(74, 137, 247, 0.8), rgba(66, 171, 233, 0.9));
+    color: white;
+    margin-right: 0.5rem;
+}
+
+.delete-btn {
+    background: linear-gradient(90deg, rgba(247, 74, 74, 0.8), rgba(233, 66, 66, 0.9));
+    color: white;
 }
 
 /* Estilos del modal */
@@ -86,62 +238,108 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow: auto;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 /* Contenido del modal */
 .modal-content {
-    background-color: white;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     margin: 10% auto;
     padding: 2rem;
-    border-radius: 8px;
     width: 90%;
     max-width: 500px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: modalFadeIn 0.4s forwards;
+}
+
+@keyframes modalFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Botón de cerrar modal */
 .close {
+    color: var(--text-color);
     float: right;
+    font-size: 28px;
+    font-weight: bold;
     cursor: pointer;
-    font-size: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+.close:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+/* Títulos secundarios */
+h2 {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
 }
 
 /* Grupos de formulario */
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 /* Etiquetas de formulario */
-.form-group label {
+label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
+    color: var(--text-color);
+    font-weight: 500;
 }
 
 /* Campos de entrada y área de texto */
-.form-group input,
-.form-group textarea {
+input, textarea {
     width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-/* Botón primario */
-.btn-primary {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* Botón secundario */
-.btn-secondary {
-    background-color: #f8f9fa;
+    padding: 0.9rem 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 12px;
+    font-size: 1rem;
     color: var(--text-color);
-    border: 1px solid #ddd;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
+    transition: all 0.3s ease;
+    resize: none;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(74, 108, 247, 0.2);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .areas-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        margin: 20% auto;
+        width: 95%;
+    }
 }

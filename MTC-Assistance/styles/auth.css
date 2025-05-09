@@ -1,9 +1,12 @@
 :root {
-    --primary-color: #4a6cf7;
-    --secondary-color: #6c7ae0;
-    --background-color: #f5f5f5;
+    --primary-color: rgba(74, 108, 247, 0.8);
+    --secondary-color: rgba(108, 122, 224, 0.9);
+    --background-color: #f0f4ff;
     --text-color: #333;
     --error-color: #ff4444;
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
 * {
@@ -14,20 +17,59 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--background-color);
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Elementos de fondo para el efecto visual */
+body::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    top: -250px;
+    left: -250px;
+    z-index: -1;
+    filter: blur(20px);
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    border-radius: 50%;
+    bottom: -200px;
+    right: -200px;
+    z-index: -1;
+    filter: blur(20px);
 }
 
 .container {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    padding: 2.5rem;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
+    transform: perspective(1000px) translateZ(0);
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    transform: perspective(1000px) translateZ(10px);
+    box-shadow: var(--glass-shadow), 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .form-container {
@@ -35,66 +77,125 @@ body {
 }
 
 h2 {
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 1.8rem;
     text-align: center;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 10px;
 }
 
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    position: relative;
 }
 
 label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
     color: var(--text-color);
+    font-weight: 500;
+    font-size: 0.9rem;
 }
 
 input {
     width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 0.9rem 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
     font-size: 1rem;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 input:focus {
     outline: none;
     border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(74, 108, 247, 0.2);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 button {
     width: 100%;
-    padding: 0.8rem;
-    background-color: var(--primary-color);
+    padding: 1rem;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 12px;
     font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
 }
 
 button:hover {
-    background-color: var(--secondary-color);
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(74, 108, 247, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
 }
 
 p {
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    color: var(--text-color);
 }
 
 a {
     color: var(--primary-color);
     text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
 }
 
 a:hover {
-    text-decoration: underline;
+    color: var(--secondary-color);
+    text-decoration: none;
 }
 
 .error {
     color: var(--error-color);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     margin-top: 0.5rem;
+    display: block;
+}
+
+/* Animaciones para los formularios */
+#loginForm, #registerForm {
+    transition: all 0.5s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#loginForm.hide, #registerForm.hide {
+    opacity: 0;
+    transform: translateY(20px);
+    position: absolute;
+}
+
+/* Estilos responsive */
+@media (max-width: 480px) {
+    .container {
+        padding: 2rem 1.5rem;
+        max-width: 90%;
+    }
 }
