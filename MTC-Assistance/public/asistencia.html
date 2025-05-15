@@ -79,8 +79,32 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Registro de Asistencia</h2>
-                <div id="listaAsistencia" class="asistencia-lista"></div>
-                <button id="guardarAsistenciaBtn" class="btn-primary">Guardar</button>
+                <div class="modal-header">
+                    <p class="fecha-asistencia"></p>
+                </div>
+                <div id="listaAsistencia" class="asistencia-lista">
+                    <!-- La lista se llenará dinámicamente -->
+                </div>
+                <div class="modal-footer">
+                    <button id="guardarAsistenciaBtn" class="btn-primary">Guardar Asistencia</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para detalles de asistencia -->
+        <div id="detallesModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="cerrarModalDetalles()">&times;</span>
+                <h2>Detalles de Asistencia</h2>
+                <div class="modal-header">
+                    <p class="fecha-detalles"></p>
+                </div>
+                <div id="listaDetalles" class="asistencia-lista">
+                    <!-- La lista de detalles se llenará dinámicamente -->
+                </div>
+                <div class="modal-footer">
+                    <button onclick="cerrarModalDetalles()" class="btn-secondary">Cerrar</button>
+                </div>
             </div>
         </div>
     </main>

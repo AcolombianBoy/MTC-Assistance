@@ -226,25 +226,24 @@ h2:after {
 }
 
 .form-slide {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transform-origin: top;
-    transform: scaleY(0);
+    display: none;
+    visibility: hidden;
     opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
     height: 0;
-    overflow: hidden;
+    transition: all 0.3s ease;
+    background: var(--glass-bg);
+    border-radius: 8px;
+    margin-top: 1rem;
 }
 
 .form-slide.active {
-    transform: scaleY(1);
+    display: block;
+    visibility: visible;
     opacity: 1;
     height: auto;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--glass-border);
 }
 
 .form-row {
@@ -350,8 +349,9 @@ input:focus {
 
 .historial-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
 .historial-card {
@@ -398,93 +398,70 @@ input:focus {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    overflow: auto;
     backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    z-index: 1000;
 }
 
 .modal-content {
+    position: relative;
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    margin: 10% auto;
+    margin: 5% auto;
     padding: 2rem;
     width: 90%;
-    max-width: 600px;
-    border-radius: 20px;
+    max-width: 800px;
+    border-radius: 12px;
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
-    transform: translateY(20px);
-    opacity: 0;
-    animation: modalFadeIn 0.4s forwards;
+    animation: modalFadeIn 0.3s ease;
 }
 
+.close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.close:hover {
+    transform: scale(1.1);
+    color: var(--error-color);
+}
+
+.asistencia-lista {
+    margin-top: 2rem;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+/* Animación para el modal */
 @keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-.close {
-    color: var(--text-color);
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.close:hover {
-    color: var(--primary-color);
-    transform: scale(1.1);
-}
-
-.asistencia-lista {
-    margin: 1.5rem 0;
-}
-
-.asistencia-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    margin-bottom: 0.8rem;
-    transition: all 0.3s ease;
-}
-
-.checkbox-container {
-    display: flex;
-    align-items: center;
-}
-
-.custom-checkbox {
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    border-radius: 6px;
-    margin-right: 10px;
-    cursor: pointer;
-    position: relative;
-    transition: all 0.2s ease;
-}
-
-.custom-checkbox.checked {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.custom-checkbox.checked:after {
-    content: '✓';
-    color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 0.8rem;
+/* Nueva animación pulse */
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.95);
+    }
 }
 
 /* Responsividad */
@@ -518,4 +495,307 @@ input:focus {
     .historial-grid {
         grid-template-columns: 1fr;
     }
+}
+
+.asistencia-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+}
+
+.estado-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.estado-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.estado-btn.presente {
+    background: #28a745;
+    color: white;
+    opacity: 0.8;
+}
+
+.estado-btn.ausente {
+    background: #dc3545;
+    color: white;
+    opacity: 0.8;
+}
+
+.estado-btn.active {
+    opacity: 1;
+    transform: scale(0.95);
+    font-weight: bold;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.estado-btn.presente.active {
+    background: #218838;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.4);
+}
+
+.estado-btn.ausente.active {
+    background: #c82333;
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.4);
+}
+
+/* Agregar estilo para hover en los botones */
+.estado-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.estado-btn:active {
+    transform: scale(0.9);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--glass-border);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    margin: 2rem auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.radio-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.radio-container input[type="radio"] {
+    display: none;
+}
+
+.radio-label {
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    user-select: none;
+}
+
+.radio-label.presente {
+    background: #28a745;
+    color: white;
+}
+
+.radio-label.ausente {
+    background: #dc3545;
+    color: white;
+}
+
+/* Estilos para radio seleccionado */
+.radio-container input[type="radio"]:checked + .radio-label.presente {
+    background: #218838;
+    opacity: 1;
+    transform: scale(0.95);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2),
+                0 0 10px rgba(40, 167, 69, 0.4);
+}
+
+.radio-container input[type="radio"]:checked + .radio-label.ausente {
+    background: #c82333;
+    opacity: 1;
+    transform: scale(0.95);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2),
+                0 0 10px rgba(220, 53, 69, 0.4);
+}
+
+/* Efectos hover */
+.radio-label:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.radio-container input[type="radio"]:checked + .radio-label:hover {
+    transform: scale(0.95);
+}
+
+.historial-item {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.historial-item .fecha {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.historial-item .stats {
+    display: flex;
+    gap: 1rem;
+}
+
+.historial-item .presentes {
+    color: var(--success-color);
+}
+
+.historial-item .ausentes {
+    color: var(--error-color);
+}
+
+/* Estilos mejorados para el historial */
+.historial-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--glass-bg);
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+}
+
+.historial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.historial-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.historial-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.historial-item .fecha {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+}
+
+.historial-item .stats {
+    display: flex;
+    justify-content: space-around;
+    font-size: 0.95rem;
+}
+
+.historial-item .presentes,
+.historial-item .ausentes {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.historial-item .presentes {
+    color: #28a745;
+}
+
+.historial-item .ausentes {
+    color: #dc3545;
+}
+
+.no-data {
+    text-align: center;
+    color: var(--text-color);
+    opacity: 0.7;
+    padding: 2rem;
+}
+
+.error-message {
+    color: var(--error-color);
+    text-align: center;
+    padding: 1rem;
+}
+
+.detalles-btn {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--primary-color);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.detalles-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.historial-item {
+    position: relative;
+    padding-bottom: 2.5rem;
+}
+
+/* Estilos para el modal de detalles */
+#detallesModal .modal-content {
+    max-width: 800px;
+    animation: modalFadeIn 0.3s ease;
+}
+
+#detallesModal .fecha-detalles {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: 2px solid var(--glass-border);
+    padding-bottom: 0.5rem;
+}
+
+#listaDetalles .asistencia-row {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background: var(--glass-bg);
+    transition: all 0.3s ease;
+}
+
+#listaDetalles .asistencia-row:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos mejorados para los radio buttons */
+.radio-container {
+    position: relative;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+.radio-container input[type="radio"]:checked + .radio-label {
+    opacity: 1;
+    transform: scale(0.95);
+    font-weight: bold;
 }
