@@ -30,7 +30,8 @@ try {
         
         echo json_encode([
             'success' => true,
-            'message' => 'Login exitoso'
+            'message' => 'Login exitoso',
+            'redirect' => 'home.html'  // Añadir esta línea para indicar la redirección
         ]);
     } else {
         echo json_encode(['success' => false, 'message' => 'Credenciales inválidas']);

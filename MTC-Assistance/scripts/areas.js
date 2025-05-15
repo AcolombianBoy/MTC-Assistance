@@ -1,5 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     checkSession();
+    
+    // Verificar que haya una organización seleccionada
+    const currentOrganizationId = localStorage.getItem('currentOrganizationId');
+    if (!currentOrganizationId) {
+        window.location.href = 'home.html';
+        return;
+    }
+    
     loadAreas();
     
     const modal = document.getElementById('areaModal');
@@ -7,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.close');
     const areaForm = document.getElementById('areaForm');
     const logoutBtn = document.getElementById('logoutBtn');
+    const backBtn = document.getElementById('backBtn');
 
     addBtn.onclick = () => {
         document.getElementById('modalTitle').textContent = 'Nueva Área';
@@ -15,9 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = 'block';
     }
 
-    closeBtn.onclick = () => modal.style.display = 'none';
-
-    window.onclick = (e) => {
+    closeBtn.onclick = () => modal.style.display = 'none';    window.onclick = (e) => {
         if (e.target === modal) modal.style.display = 'none';
     }
 
@@ -26,7 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const areaId = document.getElementById('areaId').value;
         const data = {
             nombre: document.getElementById('areaNombre').value,
-            descripcion: document.getElementById('areaDescripcion').value
+            descripcion: document.getElementById('areaDescripcion').value,
+            organizacion_id: localStorage.getItem('currentOrganizationId')
         };
 
         try {
@@ -49,13 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 loadAreas();
             } else {
                 alert(result.message);
-            }
-        } catch (error) {
+            }        } catch (error) {
             console.error('Error:', error);
             alert('Error al procesar la solicitud');
         }
     }
-
+    
     logoutBtn.onclick = async () => {
         try {
             await fetch('../controllers/logout.php');
@@ -63,6 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Error:', error);
         }
+    }
+    
+    // Botón para volver a la página de organizaciones
+    if (backBtn) {
+        backBtn.onclick = () => {
+            window.location.href = 'home.html';
+        };
     }
 });
 
@@ -84,11 +98,27 @@ async function checkSession() {
 
 async function loadAreas() {
     try {
-        const response = await fetch('../controllers/areas/read.php');
+        const organizacionId = localStorage.getItem('currentOrganizationId');
+        if (!organizacionId) {
+            window.location.href = 'home.html';
+            return;
+        }
+
+        const response = await fetch(`../controllers/areas/read.php?organizacion_id=${organizacionId}`);
         const data = await response.json();
         
         const container = document.getElementById('areasContainer');
         container.innerHTML = '';
+        
+        // Si no hay áreas, mostrar mensaje
+        if (data.length === 0) {
+            container.innerHTML = `
+                <div class="empty-message">
+                    <p>No hay áreas registradas en esta organización.</p>
+                </div>
+            `;
+            return;
+        }
         
         data.forEach(area => {
             container.appendChild(createAreaCard(area));

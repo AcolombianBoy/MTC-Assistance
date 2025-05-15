@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTC Assistance - Organizaciones</title>
+    <link rel="stylesheet" href="../styles/home.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="user-info">
+            <img src="../assets/perfil.jpg" alt="Perfil" id="userAvatar">
+            <span id="userName"></span>
+        </div>
+        <div class="nav-actions">
+            <button id="addOrgBtn" class="btn-primary">Nueva Organización</button>
+            <button id="joinOrgBtn" class="btn-secondary">Unirse con Código</button>
+            <button id="logoutBtn" class="btn-danger">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <h1>Mis Organizaciones</h1>
+        <div class="organizations-grid" id="organizationsContainer">
+            <!-- Las organizaciones se cargarán dinámicamente aquí -->
+        </div>
+    </main>
+
+    <!-- Modal para Nueva Organización -->
+    <div id="orgModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Nueva Organización</h2>
+            <form id="orgForm">
+                <div class="form-group">
+                    <label for="orgNombre">Nombre de la Organización</label>
+                    <input type="text" id="orgNombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="orgDescripcion">Descripción</label>
+                    <textarea id="orgDescripcion" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="orgCodigo">Código Único (Opcional)</label>
+                    <div class="code-input-container">
+                        <input type="text" id="orgCodigo" placeholder="Dejar vacío para generar automáticamente">
+                        <button type="button" id="generateCodeBtn" class="btn-secondary">Generar</button>
+                    </div>
+                </div>
+                <input type="hidden" id="orgId">
+                <button type="submit" class="btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Unirse con Código -->
+    <div id="joinModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Unirse a una Organización</h2>
+            <form id="joinForm">
+                <div class="form-group">
+                    <label for="joinCodigo">Código de la Organización</label>
+                    <input type="text" id="joinCodigo" required placeholder="Ingrese el código único">
+                </div>
+                <button type="submit" class="btn-primary">Unirse</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../scripts/home.js"></script>
+</body>
+</html>

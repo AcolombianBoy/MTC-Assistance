@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    // Verificar que haya una organización seleccionada
+    const currentOrganizationId = localStorage.getItem('currentOrganizationId');
+    if (!currentOrganizationId) {
+        window.location.href = 'home.html';
+        return;
+    }
+    
     // Obtener el ID del área de la URL
     const urlParams = new URLSearchParams(window.location.search);
     const areaId = urlParams.get('area');
@@ -57,7 +64,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         const formData = {
             nombre: document.getElementById('nombreAsistente').value.trim(),
             email: document.getElementById('emailAsistente').value.trim(),
-            area_id: areaId
+            area_id: areaId,
+            organizacion_id: localStorage.getItem('currentOrganizationId')
         };
 
         try {
@@ -140,8 +148,15 @@ async function loadAreaInfo(areaId) {
 async function loadAsistentes(areaId) {
     try {
         console.log('Cargando asistentes para el área:', areaId); // Debug
-
-        const response = await fetch(`../controllers/asistentes/list.php?area=${areaId}`);
+        
+        // Obtener el ID de la organización actual
+        const organizacionId = localStorage.getItem('currentOrganizationId');
+        
+        // Construir la URL con el ID de la organización
+        const url = `../controllers/asistentes/list.php?area=${areaId}${organizacionId ? `&organizacion=${organizacionId}` : ''}`;
+        console.log('URL para cargar asistentes:', url); // Debug
+        
+        const response = await fetch(url);
         const result = await response.json();
         
         console.log('Respuesta del servidor:', result); // Debug
@@ -281,7 +296,13 @@ function setupEventListeners(areaId) {
     const backBtn = document.getElementById('backBtn');
     const tomarAsistenciaBtn = document.getElementById('tomarAsistenciaBtn');
     
-    backBtn.onclick = () => window.location.href = 'areas.html';
+    // Configurar botón de volver
+    if (backBtn) {
+        backBtn.addEventListener('click', () => {
+            window.location.href = 'areas.html';
+        });
+    }
+
     tomarAsistenciaBtn.onclick = () => showAsistenciaModal(areaId);
 }
 
@@ -388,6 +409,9 @@ async function marcarAsistencia(asistenteId, estado) {
     const fecha = document.getElementById('fechaAsistencia').value;
     const row = document.querySelector(`.asistencia-row[data-id="${asistenteId}"]`);
     if (!row) return;
+    
+    // Obtener el área ID de la URL
+    const areaId = new URLSearchParams(window.location.search).get('area');
 
     try {
         const response = await fetch('../controllers/asistencia/marcar.php', {
@@ -398,7 +422,9 @@ async function marcarAsistencia(asistenteId, estado) {
             body: JSON.stringify({
                 asistente_id: asistenteId,
                 estado: estado,
-                fecha: fecha
+                fecha: fecha,
+                area_id: areaId,  // Añadir el ID del área
+                organizacion_id: localStorage.getItem('currentOrganizationId') // Añadir el ID de la organización
             })
         });
 
@@ -560,18 +586,18 @@ async function mostrarDetallesAsistencia(fecha) {
                 <div class="estado-buttons">
                     <label class="radio-container">
                         <input type="radio" 
-                               name="asistencia_${asistencia.asistente_id}" 
-                               value="presente" 
-                               ${asistencia.estado === 'presente' ? 'checked' : ''}
-                               onchange="actualizarAsistencia(${asistencia.asistente_id}, 'presente', '${fecha}')">
+                            name="asistencia_${asistencia.asistente_id}" 
+                            value="presente" 
+                            ${asistencia.estado === 'presente' ? 'checked' : ''}
+                            onchange="actualizarAsistencia(${asistencia.asistente_id}, 'presente', '${fecha}')">
                         <span class="radio-label presente">Presente</span>
                     </label>
                     <label class="radio-container">
                         <input type="radio" 
-                               name="asistencia_${asistencia.asistente_id}" 
-                               value="ausente" 
-                               ${asistencia.estado === 'ausente' ? 'checked' : ''}
-                               onchange="actualizarAsistencia(${asistencia.asistente_id}, 'ausente', '${fecha}')">
+                            name="asistencia_${asistencia.asistente_id}" 
+                            value="ausente" 
+                            ${asistencia.estado === 'ausente' ? 'checked' : ''}
+                            onchange="actualizarAsistencia(${asistencia.asistente_id}, 'ausente', '${fecha}')">
                         <span class="radio-label ausente">Ausente</span>
                     </label>
                 </div>
@@ -593,9 +619,7 @@ async function actualizarAsistencia(asistenteId, estado, fecha) {
     if (!row) return;
 
     const radioButtons = row.querySelectorAll('input[type="radio"]');
-    const selectedRadio = row.querySelector(`input[type="radio"][value="${estado}"]`);
-
-    try {
+    const selectedRadio = row.querySelector(`input[type="radio"][value="${estado}"]`);    try {
         const response = await fetch('../controllers/asistencia/actualizar.php', {
             method: 'POST',
             headers: {
@@ -604,7 +628,8 @@ async function actualizarAsistencia(asistenteId, estado, fecha) {
             body: JSON.stringify({
                 asistente_id: asistenteId,
                 estado: estado,
-                fecha: fecha
+                fecha: fecha,
+                organizacion_id: localStorage.getItem('currentOrganizationId')
             })
         });
 
@@ -702,16 +727,16 @@ async function cargarAsistentes() {
                 <div class="estado-buttons">
                     <label class="radio-container">
                         <input type="radio" 
-                               name="asistencia_${asistente.id}" 
-                               value="presente" 
-                               onchange="marcarAsistencia(${asistente.id}, 'presente')">
+                            name="asistencia_${asistente.id}" 
+                            value="presente" 
+                            onchange="marcarAsistencia(${asistente.id}, 'presente')">
                         <span class="radio-label presente">Presente</span>
                     </label>
                     <label class="radio-container">
                         <input type="radio" 
-                               name="asistencia_${asistente.id}" 
-                               value="ausente" 
-                               onchange="marcarAsistencia(${asistente.id}, 'ausente')">
+                            name="asistencia_${asistente.id}" 
+                            value="ausente" 
+                            onchange="marcarAsistencia(${asistente.id}, 'ausente')">
                         <span class="radio-label ausente">Ausente</span>
                     </label>
                 </div>

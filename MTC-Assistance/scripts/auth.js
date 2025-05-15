@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('loginPassword').value;
 
         try {
-            const response = await fetch('/mtca/MTC-Assistance/MTC-Assistance/controllers/login.php', {
+            const response = await fetch('../controllers/login.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             
             if (data.success) {
-                // Ruta absoluta desde la raíz del servidor
-                window.location.href = '/mtca/MTC-Assistance/MTC-Assistance/public/areas.html';
+                // Redirigir a home.html con ruta relativa
+                window.location.href = 'home.html';
             } else {
                 showError(loginForm, data.message);
             }
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('/mtca/MTC-Assistance/MTC-Assistance/controllers/register.php', {
+            const response = await fetch('../controllers/register.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

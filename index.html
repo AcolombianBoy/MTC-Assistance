@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Título de la página -->
     <title>MTC Assistance - Autenticación</title>
-    <!-- Enlace a los estilos CSS -->
-    <link rel="stylesheet" href="MTC-Assistance/styles/auth.css">
+    <!-- Cambiar la ruta del CSS para que sea relativa a la ubicación actual -->
+    <link rel="stylesheet" href="./MTC-Assistance/styles/auth.css">
 </head>
 <body>
     <!-- Contenedor principal -->
@@ -65,8 +65,11 @@
         </div>
     </div>
     
-    <!-- Script de autenticación con rutas modificadas para la raíz -->
+    <!-- Script de autenticación con rutas relativas -->
     <script>
+        // Definir una base URL configurable (déjala vacía para rutas relativas)
+        const BASE_URL = './';
+        
         document.addEventListener('DOMContentLoaded', () => {
             const loginForm = document.getElementById('login');
             const registerForm = document.getElementById('register');
@@ -78,7 +81,8 @@
                 const password = document.getElementById('loginPassword').value;
 
                 try {
-                    const response = await fetch('MTC-Assistance/controllers/login.php', {
+                    // Usar rutas relativas con BASE_URL
+                    const response = await fetch(BASE_URL + 'MTC-Assistance/controllers/login.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -89,7 +93,7 @@
                     const data = await response.json();
                     
                     if (data.success) {
-                        window.location.href = 'MTC-Assistance/public/areas.html';
+                        window.location.href = BASE_URL + 'MTC-Assistance/public/' + (data.redirect || 'home.html');
                     } else {
                         showError(loginForm, data.message);
                     }
@@ -113,7 +117,8 @@
                 }
 
                 try {
-                    const response = await fetch('MTC-Assistance/controllers/register.php', {
+                    // Usar rutas relativas con BASE_URL
+                    const response = await fetch(BASE_URL + 'MTC-Assistance/controllers/register.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
