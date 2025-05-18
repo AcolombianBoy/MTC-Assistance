@@ -131,6 +131,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             alert('Error al guardar la asistencia: ' + error.message);
         }
     });
+
+    // Sincronizar con el backend
+    try {
+        const response = await fetch('../controllers/sync_session.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ organizacion_id: currentOrganizationId })
+        });
+        // Verificar respuesta...
+    } catch (error) {
+        console.error('Error sincronizando sesión:', error);
+    }
 });
 
 async function loadAreaInfo(areaId) {
@@ -201,7 +213,8 @@ async function deleteAsistente(id, areaId) {
     if (!confirm('¿Estás seguro de eliminar este asistente?')) return;
     
     try {
-        const response = await fetch('/mtca/MTC-Assistance/MTC-Assistance/controllers/asistentes/delete.php', {
+        // Cambiar esta ruta absoluta a una relativa
+        const response = await fetch('../controllers/asistentes/delete.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id })
@@ -249,7 +262,8 @@ async function updateAsistente(event, id) {
     const [nombre, email] = form.querySelectorAll('input');
 
     try {
-        const response = await fetch('/mtca/MTC-Assistance/MTC-Assistance/controllers/asistentes/update.php', {
+        // Cambiar a ruta relativa en lugar de absoluta
+        const response = await fetch('../controllers/asistentes/update.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -258,6 +272,17 @@ async function updateAsistente(event, id) {
                 email: email.value
             })
         });
+        
+        // Verificar si la respuesta es válida antes de intentar parsearla como JSON
+        if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status}`);
+        }
+        
+        // Verificar el tipo de contenido
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+            throw new Error("La respuesta no es JSON válido");
+        }
 
         const data = await response.json();
         if (data.success) {
@@ -268,7 +293,7 @@ async function updateAsistente(event, id) {
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Error al actualizar el asistente');
+        alert('Error al actualizar el asistente: ' + error.message);
     }
 }
 
