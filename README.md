@@ -1,4 +1,4 @@
-# MTC-Assistance
+# MTC-Assistance -- si quieres encontrar la informacion del proyoecto mas resumida descarga el archivo de mapa mental de mtc-assistence.png
 Proyecto final del curso de construccion de aplicaciones web de cuarto semestre
 
 ## Instalación y Configuración
