@@ -49,21 +49,8 @@ Proyecto final del curso de construccion de aplicaciones web de cuarto semestre
 - **UI/UX**: Diseño responsivo para dispositivos móviles y escritorio
 
 ## Instalación y Configuración
-
-1. Clonar el repositorio en el directorio de su servidor web:
-2. Configurar la base de datos:
-- Crear una base de datos MySQL
-- Importar el archivo `database/schema.sql`
-
-3. Configurar la conexión a la base de datos:
-- Editar el archivo `config/database.php` con las credenciales correspondientes
-
 4. Acceder a la aplicación:
-- Navegar a `http://su-servidor/MTC-Assistance/index.html`
-
-5. Acceso inicial:
-- Crear una cuenta de usuario
-- Iniciar sesión con las credenciales creadas
+- Navegar a `mtc-assistance.systems`
 
 ## Utilidad del Proyecto
 
@@ -76,19 +63,6 @@ MTC-Assistance está diseñado para:
 - **Clubes y asociaciones**: Seguimiento de participación de miembros en distintas actividades
 
 El sistema elimina la necesidad de llevar registros manuales de asistencia, reduciendo errores y mejorando la eficiencia administrativa. Además, proporciona datos históricos y estadísticas que permiten tomar decisiones informadas sobre la participación y asistencia en diferentes áreas.
-
-## Contribución
-
-Si deseas contribuir a este proyecto, por favor:
-1. Haz un fork del repositorio
-2. Crea una rama para tu función: `git checkout -b nueva-funcion`
-3. Realiza tus cambios y haz commit: `git commit -m 'Añadir nueva función'`
-4. Sube tus cambios: `git push origin nueva-funcion`
-5. Envía un Pull Request
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT - consulta el archivo LICENSE para más detalles.
 
 ## Desarrolladores
 - Santiago Ramirez
