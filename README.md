@@ -1,6 +1,20 @@
 # MTC-Assistance
 Proyecto final del curso de construccion de aplicaciones web de cuarto semestre
 
+## Instalación y Configuración
+- Navegar a `mtc-assistance.systems`
+
+## Documentacion 
+- diagramas y bosquejos en "https://lucid.app/lucidchart/03ac804c-5873-414f-8f60-fe39e59d4a80/edit?viewport_loc=-22344%2C-6499%2C40647%2C21184%2C0_0&invitationId=inv_9b6a2a98-870f-4cda-8a5f-a44087cb34c9"
+
+## Herramientas del proyecto
+- Mysql
+- HTML
+- CSS
+- JavaScript
+- PHP
+- Hostinger -> como hosting
+
 ## Funcionalidades Principales
 
 ### 1. Gestión de Usuarios
@@ -47,10 +61,6 @@ Proyecto final del curso de construccion de aplicaciones web de cuarto semestre
 - **Servidor**: Apache
 - **Autenticación**: Sistema propio con sesiones PHP
 - **UI/UX**: Diseño responsivo para dispositivos móviles y escritorio
-
-## Instalación y Configuración
-4. Acceder a la aplicación:
-- Navegar a `mtc-assistance.systems`
 
 ## Utilidad del Proyecto
 
