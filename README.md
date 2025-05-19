@@ -2,8 +2,8 @@
 -- si quieres encontrar la informacion del proyoecto mas resumida descarga el archivo de mapa mental de mtc-assistence.png
 
 ## Documentacion 
-- diagramas y bosquejos en "https://lucid.app/lucidchart/03ac804c-5873-414f-8f60-fe39e59d4a80/edit?viewport_loc=-22344%2C-6499%2C40647%2C21184%2C0_0&invitationId=inv_9b6a2a98-870f-4cda-8a5f-a44087cb34c9"
-- 
+- la documentacion como diagramas de casos de uso, clases y wireframes, estan indexados en el repositorio como .png
+
 ## Instalación y Configuración
 - Navegar a `mtc-assistance.systems`
 
